@@ -1,10 +1,12 @@
 // src/features/valueSlice.js
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import encrypt from "../utils/utils";
 
 export const signInUser = createAsyncThunk(
   "value/signInUser",
   async (data, { dispatch, getState }) => {
-    const token = Math.ceil(Math.random() * 10000);
+    const code = Math.ceil(Math.random() * 10000);
+    const token = encrypt(code);
     dispatch(signIn(token));
   }
 );
